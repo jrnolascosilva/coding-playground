@@ -1,101 +1,79 @@
 package org.example.apple;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+import java.util.stream.Collectors;
+
 public class ConvertGivenNumberToWords {
 
-    public static String convert(long number)
-    {
-        long limit = 1000000000000L, curr_hun, t = 0;
+    // Array to store numbers till 20
+    static String[] firstTwenty = {
+            "", "One ", "Two ", "Three ",
+            "Four ", "Five ", "Six ", "Seven ",
+            "Eight ", "Nine ", "Ten ", "Eleven ",
+            "Twelve ", "Thirteen ", "Fourteen ", "Fifteen ",
+            "Sixteen ", "Seventeen ", "Eighteen ", "Nineteen "
+    };
 
-        if(number == 0)
+    // Array to store multiples of ten
+    static String[] tens = {"", "", "Twenty", "Thirty",
+            "Forty", "Fifty", "Sixty",
+            "Seventy", "Eighty", "Ninety"};
+    // Array to store the powers of 10
+    static String[] multiplier = {"", "Thousand ", "Million ", "Billion ", "Trillion "};
+
+    public static String convert(long number) {
+        if (number == 0)
             return "Zero";
 
-        // Array to store the powers of 10
-        String[] multiplier = {"Trillion", "Billion", "Million", "Thousand"};
+        if (number < 20)
+            return firstTwenty[(int) number];
 
-        // Array to store numbers till 20
-        String[] first_twenty = {
-                "",        "One",       "Two",      "Three",
-                "Four",    "Five",      "Six",      "Seven",
-                "Eight",   "Nine",      "Ten",      "Eleven",
-                "Twelve",  "Thirteen",  "Fourteen", "Fifteen",
-                "Sixteen", "Seventeen", "Eighteen", "Nineteen"
-        };
+        List<String> answer = new ArrayList<>();
 
-        // Array to store multiples of ten
-        String[] tens = { "",        "Twenty", "Thirty",
-                "Forty",   "Fifty",  "Sixty",
-                "Seventy", "Eighty", "Ninety" };
-
-        if(number < 20 )
-            return first_twenty[(int) number ];
-
-        String answer = "";
-        for (long i = number; i > 0; i %= limit, limit /= 1000, t++) {
-
-            // Store the value in multiplier[t], i.e n =
-            // 1000000, then r = 1, for multiplier(million),
-            // 0 for multipliers(trillion and billion)
-            // multiplier here refers to the current
-            // accessible limit
-            curr_hun = i / limit;
-
-            // It might be possible that the current
-            // multiplier is bigger than your number
-            while (curr_hun == 0) {
-
-                // Set i as the remainder obtained when n
-                // was divided by the limit
-                i %= limit;
-
-                // Divide the limit by 1000, shifts the
-                // multiplier
-                limit /= 1000;
-
-                // Get the current value in hundreds, as
-                // English system works in hundreds
-                curr_hun = i / limit;
-
-                // Shift the multiplier
-                ++t;
-            }
-
-            // If current hundred is greater than 99, Add
-            // the hundreds' place
-            if (curr_hun > 99)
-                answer += (first_twenty[(int)curr_hun / 100]
-                        + " Hundred ");
-
-            // Bring the current hundred to tens
-            curr_hun = curr_hun % 100;
-
-            // If the value in tens belongs to [1,19], add
-            // using the first_twenty
-            if (curr_hun > 0 && curr_hun < 20)
-                answer
-                        += (first_twenty[(int)curr_hun] + " ");
-
-                // If curr_hun is now a multiple of 10, but not
-                // 0 Add the tens' value using the tens array
-            else if (curr_hun % 10 == 0 && curr_hun != 0)
-                answer
-                        += (tens[(int)curr_hun / 10 - 1] + " ");
-
-                // If the value belongs to [21,99], excluding
-                // the multiples of 10 Get the ten's place and
-                // one's place, and print using the first_twenty
-                // array
-            else if (curr_hun > 20 && curr_hun < 100)
-                answer
-                        += (tens[(int)curr_hun / 10 - 1] + " "
-                        + first_twenty[(int)curr_hun % 10]
-                        + " ");
-
-            // If Multiplier has not become less than 1000,
-            // shift it
-            if (t < 4 && curr_hun > 0)
-                answer += (multiplier[(int)t] + " ");
+        int iteration = 0;
+        while (number > 0) {
+            int digitGroup = (int) number % 1000;
+            number /= 1000;
+            answer.add(convertGroup(digitGroup) + multiplier[iteration]);
+            iteration++;
         }
-        return (answer);
+        return String.join("", answer.reversed());
+    }
+
+    public static String convertGroup(int number) {
+        StringBuffer sb = new StringBuffer();
+
+        // find hundred digit, the 3rd one
+        int _3rdDigit = (number / 100) % 10;
+        if (_3rdDigit > 0) {// i.e. (519 / 100) % 10 = 5 <-- 3rd digit
+            sb.append(firstTwenty[_3rdDigit] + "Hundred ");
+            number -= _3rdDigit * 100;
+        }
+
+        // if remaining 2 digits less than 20
+        if (number < 20) {
+            sb.append(firstTwenty[number]);
+        } else {
+            int _2ndDigit = (number / 10);
+            sb.append(tens[_2ndDigit]);
+
+            int _1thDigit = number % 10;
+            if (_1thDigit != 0)
+                sb.append("-");
+
+            sb.append(firstTwenty[_1thDigit]);
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        //System.out.println(convertGroup(99, 0));
+        //System.out.println(convertGroup(520, 0));
+        //System.out.println(convertGroup(999, 0));
+        System.out.println(convert(1999));
     }
 }
