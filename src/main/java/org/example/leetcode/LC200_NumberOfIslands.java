@@ -1,4 +1,4 @@
-package org.example.apple;
+package org.example.leetcode;
 
 // https://leetcode.com/problems/number-of-islands/description/
 // https://youtu.be/QBiVF2B_7XY?si=ExREtmSxvBbTXXzf
@@ -6,7 +6,7 @@ package org.example.apple;
 // Time complexity O(m * n)
 // Space complexity O(m * n)
 
-public class NumberOfIslands {
+public class LC200_NumberOfIslands {
 
     private static final char[][] MAP = {
             {'1', '1', '0', '0', '0'},

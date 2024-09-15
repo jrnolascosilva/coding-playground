@@ -1,4 +1,4 @@
-package org.example.apple;
+package org.example.leetcode;
 
 // https://leetcode.com/problems/spiral-matrix/description/
 // Explanation 1: https://youtu.be/aqVW8IuXUF0?si=kGGFD553PKbmq86q
@@ -9,7 +9,7 @@ package org.example.apple;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpiralMatrix {
+public class LC0054_SpiralMatrix {
 
     private static final int[][] MATRIX = {
             {1, 2, 3, 4},

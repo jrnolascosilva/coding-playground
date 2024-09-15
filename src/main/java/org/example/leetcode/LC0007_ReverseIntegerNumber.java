@@ -1,8 +1,8 @@
-package org.example.other;
+package org.example.leetcode;
 
 // https://leetcode.com/problems/reverse-integer/description/
 
-public class ReverseIntegerNumber {
+public class LC0007_ReverseIntegerNumber {
 
     public static int reverse(int x)
     {
