@@ -49,8 +49,8 @@ public class NumberOfIslands {
 
         traverseIsland(grid, i - 1, j);     // check up
         traverseIsland(grid, i + 1, j);     // check down
-        traverseIsland(grid, i, j - 1);       // left
-        traverseIsland(grid, i, j + 1);       // right
+        traverseIsland(grid, i, j - 1);     // left
+        traverseIsland(grid, i, j + 1);     // right
     }
 
     public static void main(String[] args) {

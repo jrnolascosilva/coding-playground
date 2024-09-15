@@ -1,5 +1,7 @@
 package org.example.apple;
 
+// https://www.geeksforgeeks.org/convert-number-to-words/
+
 import java.util.ArrayList;
 import java.util.List;
 
