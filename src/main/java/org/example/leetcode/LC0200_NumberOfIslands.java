@@ -6,7 +6,7 @@ package org.example.leetcode;
 // Time complexity O(m * n)
 // Space complexity O(m * n)
 
-public class LC200_NumberOfIslands {
+public class LC0200_NumberOfIslands {
 
     private static final char[][] MAP = {
             {'1', '1', '0', '0', '0'},
