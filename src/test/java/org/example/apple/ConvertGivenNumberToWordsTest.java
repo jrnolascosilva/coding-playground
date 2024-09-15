@@ -14,7 +14,7 @@ class ConvertGivenNumberToWordsTest {
         long value = 19;
         String expected = "Nineteen";
 
-        assertEquals(expected, ConvertGivenNumberToWords.convert(value));
+        assertEquals(expected, ConvertGivenNumberToWords.numberToWords(value));
     }
 
     @Test
@@ -22,6 +22,6 @@ class ConvertGivenNumberToWordsTest {
         long value = 1234567;
         String expected = "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven";
 
-        Assertions.assertEquals(expected, ConvertGivenNumberToWords.convert(value));
+        Assertions.assertEquals(expected, ConvertGivenNumberToWords.numberToWords(value));
     }
 }

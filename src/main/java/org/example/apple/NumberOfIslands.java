@@ -1,6 +1,8 @@
 package org.example.apple;
 
 // https://leetcode.com/problems/number-of-islands/description/
+// Time complexity O(m * n)
+// Space complexity O(m * n)
 
 public class NumberOfIslands {
 

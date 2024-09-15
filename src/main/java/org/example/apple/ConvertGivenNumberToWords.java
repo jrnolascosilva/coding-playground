@@ -1,5 +1,6 @@
 package org.example.apple;
 
+// https://leetcode.com/problems/integer-to-english-words/description/
 // https://www.geeksforgeeks.org/convert-number-to-words/
 
 import java.util.ArrayList;
@@ -23,19 +24,19 @@ public class ConvertGivenNumberToWords {
     // Array to store the powers of 10
     static String[] multiplier = {"", "Thousand ", "Million ", "Billion ", "Trillion "};
 
-    public static String convert(long number) {
-        if (number == 0)
+    public static String numberToWords(long num) {
+        if (num == 0)
             return "Zero";
 
-        if (number < 20)
-            return firstTwenty[(int) number];
+        if (num < 20)
+            return firstTwenty[(int) num];
 
         List<String> answer = new ArrayList<>();
 
         int iteration = 0;
-        while (number > 0) {
-            int digitGroup = (int) number % 1000;
-            number /= 1000;
+        while (num > 0) {
+            int digitGroup = (int) num % 1000;
+            num /= 1000;
             answer.add(convertGroup(digitGroup) + multiplier[iteration]);
             iteration++;
         }
@@ -76,6 +77,6 @@ public class ConvertGivenNumberToWords {
         //System.out.println(convertGroup(99, 0));
         //System.out.println(convertGroup(520, 0));
         //System.out.println(convertGroup(999, 0));
-        System.out.println(convert(1999));
+        System.out.println(numberToWords(1999));
     }
 }
