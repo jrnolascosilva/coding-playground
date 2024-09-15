@@ -41,7 +41,7 @@ public class ConvertGivenNumberToWords {
     }
 
     public static String convertGroup(int number) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         // find hundred digit, the 3rd one
         int _3rdDigit = (number / 100) % 10;
