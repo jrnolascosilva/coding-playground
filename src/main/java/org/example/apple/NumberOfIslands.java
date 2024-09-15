@@ -1,5 +1,7 @@
 package org.example.apple;
 
+// https://leetcode.com/problems/number-of-islands/description/
+
 public class NumberOfIslands {
 
     private static final char[][] MAP = {

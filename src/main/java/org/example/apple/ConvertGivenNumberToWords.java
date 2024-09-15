@@ -1,14 +1,11 @@
 package org.example.apple;
 
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.stream.Collectors;
 
 public class ConvertGivenNumberToWords {
 
-    // Array to store numbers till 20
+    // Array to store numbers till 20 ordinal numbers
     static String[] firstTwenty = {
             "", "One ", "Two ", "Three ",
             "Four ", "Five ", "Six ", "Seven ",
@@ -53,17 +50,20 @@ public class ConvertGivenNumberToWords {
             number -= _3rdDigit * 100;
         }
 
-        // if remaining 2 digits less than 20
+       // tens
         if (number < 20) {
+            // if remaining 2 digits less than 20 return from firstTwenty
             sb.append(firstTwenty[number]);
-        } else {
+        }
+        else {
+            // map 2nd digit to ten name i.e. Twenty
             int _2ndDigit = (number / 10);
             sb.append(tens[_2ndDigit]);
 
+            // map 1nd digit to the <20 ordinal numbers
             int _1thDigit = number % 10;
             if (_1thDigit != 0)
-                sb.append("-");
-
+                sb.append("-");  // i.e. Sixty-Seven
             sb.append(firstTwenty[_1thDigit]);
         }
 
