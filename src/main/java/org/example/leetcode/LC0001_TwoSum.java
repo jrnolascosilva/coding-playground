@@ -39,7 +39,7 @@ public class LC0001_TwoSum {
             if (found == null)
                 complementsMap.put(curr, i);
             else
-                return new int[]{found, i};
+                return new int[] {found, i};
         }
 
         return nums;
