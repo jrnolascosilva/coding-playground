@@ -1,6 +1,7 @@
 package org.example.leetcode;
 
 // https://leetcode.com/problems/integer-to-english-words/description/
+// Explanation: https://youtu.be/G0_I-ZF0S38?si=ediF9A8E1dqlQq2q
 // https://www.geeksforgeeks.org/convert-number-to-words/
 
 import java.util.ArrayList;
