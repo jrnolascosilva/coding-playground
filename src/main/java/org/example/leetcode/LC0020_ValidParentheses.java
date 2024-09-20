@@ -5,6 +5,10 @@ import java.util.Stack;
 
 // https://leetcode.com/problems/valid-parentheses/
 // Explanation: https://youtu.be/TaWs8tIrnoA?si=BKRN376QFSOoXd3X
+// https://youtu.be/TaWs8tIrnoA?si=uXXsfLwumYfpXV-o
+// Time complexity: O(n) where n is the length of the string
+// Space complexity: O(n) where n is the length of the string
+
 
 public class LC0020_ValidParentheses {
 
