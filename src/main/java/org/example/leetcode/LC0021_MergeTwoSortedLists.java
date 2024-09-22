@@ -2,6 +2,7 @@ package org.example.leetcode;
 
 // https://leetcode.com/problems/merge-two-sorted-lists/
 // Explanation 1: https://youtu.be/XIdigk956u0?si=e4SNvCRPyiR7tHAE
+// Explanation 2: https://youtu.be/0ougDTvVOFI?si=uPUkcV4xDgWi9WzF
 // Time complexity: O(m + n) = O(n)
 // Space complexity: O(1)
 
@@ -72,14 +73,14 @@ public class LC0021_MergeTwoSortedLists {
         b.next.next = new ListNode(8);
         b.next.next.next = new ListNode(10);
 
-        ListNode res = solution.mergeTwoLists(a, b);
+        ListNode temp = solution.mergeTwoLists(a, b);
 
-        ListNode temp = res;
         System.out.print("Merged Link List is:\n");
         while (temp != null) {
             System.out.print(temp.val + " ");
             temp = temp.next;
         }
+        System.out.println("");
     }
 }
 
