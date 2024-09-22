@@ -4,27 +4,27 @@ package org.example.leetcode;
 // Time complexity = O(n)
 // Space complexity = O(1)
 
-// Definition for singly-linked list.
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
 
 public class LC0206_ReverseLinkedList {
+    // Definition for singly-linked list.
+    static class ListNode {
+        int val;
+        ListNode next;
 
-    public static ListNode reverseList(ListNode head) {
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public ListNode reverseList(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
 
@@ -56,7 +56,8 @@ public class LC0206_ReverseLinkedList {
         three.next = four;
         four.next = five;
 
-        ListNode result = reverseList(one);
+        LC0206_ReverseLinkedList solution = new LC0206_ReverseLinkedList();
+        ListNode result = solution.reverseList(one);
 
         while(result != null)
         {
