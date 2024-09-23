@@ -1,6 +1,6 @@
 package org.example.leetcode;
 
-// https://leetcode.com/problems/reverse-integer/description/
+// https://leetcode.com/problems/reverse-integer
 
 public class LC0007_ReverseIntegerNumber {
 

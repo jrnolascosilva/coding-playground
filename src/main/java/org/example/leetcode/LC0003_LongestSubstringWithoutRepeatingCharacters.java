@@ -26,14 +26,14 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
             if (!set.contains(s.charAt(right))) {
                 set.add(s.charAt(right));
                 right++;
-                maxLength = Math.max(maxLength, right - left);
+                maxLength = Math.max(maxLength, right - left); //
             }
             else
             {
                 // if the character at the right pointer is in the set, then the current windows is not valid
-                // so remove the character at the left pointer and move the left pointer to the right
+                // so remove the character at the LEFT pointer and move the left pointer to the right
                 // in order to find a new valid window
-                set.remove(s.charAt(right));
+                set.remove(s.charAt(left)); // remove the character at the left pointer
                 left++;
             }
 
