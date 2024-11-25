@@ -31,7 +31,7 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
             else
             {
                 // if the character at the right pointer is in the set, then the current windows is not valid
-                // so remove the character at the LEFT pointer and move the left pointer to the right
+                // so remove from "set" the character at the LEFT pointer and move the left pointer to the right
                 // in order to find a new valid window
                 set.remove(s.charAt(left)); // remove the character at the left pointer
                 left++;

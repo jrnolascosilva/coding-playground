@@ -31,20 +31,26 @@ public class LC0001_TwoSum {
              i.e. with complements = { 2: 0, 7: 1, 11: 2, 15: 3 } and target = 9, then output = [0, 1]
          */
 
-        Map<Integer, Integer> complementsMap = new HashMap<>();
+        Map<Integer,Integer> complementsMap = new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            int curr = nums[i];
-            int complement = target - curr;   // calc complement
-            Integer found = complementsMap.get(complement);
+        for(int i = 0; i < nums.length; i++)
+        {
+            int current = nums[i];
+            int diff = target - current;
 
-            if (found == null)
-                complementsMap.put(curr, i);
+            if(complementsMap.containsKey(diff))
+            {
+                // return the index of the current number and the index of the number that adds up to the target
+                return new int[] {i, complementsMap.get(diff)};
+            }
             else
-                return new int[] {found, i};
+            {
+                complementsMap.put(current, i); // save current number and its index
+            }
+
         }
 
-        return nums;
+        return new int[] {-1, -1};
     }
 
     public static void main(String[] args) {
