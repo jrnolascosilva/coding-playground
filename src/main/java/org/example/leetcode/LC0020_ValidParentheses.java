@@ -23,19 +23,20 @@ public class LC0020_ValidParentheses {
         // Lets use stack to keep track of opening brackets storing corresponding closing brackets
         Stack<Character> stack = new Stack<>();
 
-        for(Character curr : s.toCharArray())
+        char[] charArray = s.toCharArray();
+        for(Character c : charArray)
         {
             // if stack is empty, and we get closing bracket, then return false
-            if(stack.isEmpty() && !symbols.containsKey(curr))
+            if(stack.isEmpty() && !symbols.containsKey(c))
                 return false;
 
             // if opening bracket, then push corresponding closing bracket
-            if(symbols.containsKey(curr))  // is an opening bracket
-                stack.push(symbols.get(curr));
+            if(symbols.containsKey(c))  // is an opening bracket
+                stack.push(symbols.get(c));
             else {
                 // as c is not an opening bracket, it should be closing bracket then check if it matches
                 // the top of stack
-                if(stack.peek() == curr)
+                if(stack.peek() == c)
                     stack.pop();
                 else
                     return false;   // return false because closing bracket is not matching with opening bracket
@@ -46,10 +47,6 @@ public class LC0020_ValidParentheses {
     }
 
     public static void main(String[] args) {
-
-        System.out.println(isValid("()"));
-        System.out.println(isValid("()[]{}"));
-        System.out.println(isValid("(]"));
-        System.out.println(isValid("([])"));
+        System.out.println(isValid("({[]})()"));
     }
 }

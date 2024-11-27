@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 // https://leetcode.com/problems/group-anagrams/
-// Explanation: Check for an Anagrams methods: https://youtu.be/QZmh8-Auqo8?si=6vzGso7HLnOwZCoT
+// Explanation 1: Check for an Anagrams methods: https://youtu.be/QZmh8-Auqo8?si=6vzGso7HLnOwZCoT
+// Explanation 2: https://youtu.be/C9V66KyZCP8?si=8bgKV-dmPnUgf-I6
 // Explanation: CategorizeByOrder, CategorizeByFrecuency
 // Time Complexity = O(n log k) where k = max string length because of sorting, and n = number of strings
 //

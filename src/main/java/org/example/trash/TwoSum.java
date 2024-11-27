@@ -2,7 +2,6 @@ package org.example.trash;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 public class TwoSum {
 

@@ -12,7 +12,7 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
         int maxLength = 0;
 
-        Set<Character> set = new HashSet<>();
+        Set<Character> memory = new HashSet<>();
         int left = 0;
         int right = 0;
 
@@ -23,8 +23,8 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
 
             // if the character at the right pointer is not in the set, add it to the set
             // and move the right pointer to the right and increment the max length
-            if (!set.contains(s.charAt(right))) {
-                set.add(s.charAt(right));
+            if (!memory.contains(s.charAt(right))) {
+                memory.add(s.charAt(right));
                 right++;
                 maxLength = Math.max(maxLength, right - left); //
             }
@@ -33,7 +33,7 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
                 // if the character at the right pointer is in the set, then the current windows is not valid
                 // so remove from "set" the character at the LEFT pointer and move the left pointer to the right
                 // in order to find a new valid window
-                set.remove(s.charAt(left)); // remove the character at the left pointer
+                memory.remove(s.charAt(left)); // remove the character at the left pointer
                 left++;
             }
 
