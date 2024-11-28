@@ -26,34 +26,34 @@ public class LC0021_MergeTwoSortedLists {
     }
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        // returnNode node to store the result. Common pattern in LeetCode problems
-        ListNode returnNode = new ListNode();   // dummy node
-        ListNode headNode = returnNode;
+        // dummy node to store the result. Common pattern in LeetCode problems
+        ListNode dummy = new ListNode();   // dummy node
+        ListNode tail = dummy;
 
         // Loop through both lists comparing the values and merging them into the result
         // when one list is exhausted then next step will be merging the remaining other list.
         while (list1 != null && list2 != null) {
             // Compare the values from both lists
             if (list1.val < list2.val) {
-                returnNode.next = list1;
+                tail.next = list1;
                 list1 = list1.next;
             } else {
-                returnNode.next = list2;
+                tail.next = list2;
                 list2 = list2.next;
             }
             // regardless of what list node come from, advance the tail
-            returnNode = returnNode.next;
+            tail = tail.next;
         }
 
         // At the end of the while loop, list1 or list2 will be null
         // If list1 is null, then tail.next will be the remaining part of list2
         // If list2 is null, then tail.next will be the remaining part of list1
         if (list1 != null)
-            returnNode.next = list1;
+            tail.next = list1;
         else if (list2 != null)
-            returnNode.next = list2;
+            tail.next = list2;
 
-        return headNode.next;
+        return dummy.next;
     }
 
     public static void main(String[] args) {
