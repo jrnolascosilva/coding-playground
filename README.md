@@ -12,4 +12,11 @@ This project is practice and implementation for coding challenges.
 ## Planned Challenges
 - https://leetcode.com/problems/binary-search/description/
 - https://leetcode.com/problems/product-of-array-except-self/description/
+
+
+## Curated Lists
+
+### Apple
+- https://leetcode.com/discuss/general-discussion/1734481/apple-top-100-questions
+- https://www.pathrise.com/guides/apple-interview-questions/
 - 
