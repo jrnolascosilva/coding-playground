@@ -1,7 +1,8 @@
 package org.example.leetcode;
 
 // https://leetcode.com/problems/number-of-islands/description/
-// https://youtu.be/QBiVF2B_7XY?si=ExREtmSxvBbTXXzf
+// Explanation 1: https://youtu.be/U6-X_QOwPcs?si=vD6oWTMHCzHigV2T
+// Explanation 2: https://youtu.be/QBiVF2B_7XY?si=ExREtmSxvBbTXXzf
 
 // Time complexity O(m * n)
 // Space complexity O(m * n)
@@ -15,52 +16,43 @@ public class LC0200_NumberOfIslands {
             {'0', '0', '0', '1', '1'}
     };
 
-    public static int numIslands(char[][] grid) {
-        int numOfIslands = 0;
+    public int numIslands(char[][] grid) {
+        int numberOfIslands = 0;
 
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                if (grid[i][j] == '1') {
-                    traverseIsland(grid, i, j);
-                    numOfIslands++;
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[i].length; j++) {
+                if(grid[i][j] == '1') {
+                    bfsTraverseIsland(grid, i, j);
+                    numberOfIslands++;
                 }
-
             }
-        }
-        return numOfIslands;
+        };
+        return numberOfIslands;
     }
 
-    public static char checkBoundaries(char[][] grid, int i, int j) {
-        if (i < 0 || i >= grid.length)
-            return '0';
-        if (j < 0 || j >= grid[i].length)
-            return '0';
-
-        return grid[i][j];
-    }
-
-    private static void traverseIsland(char[][] grid, int i, int j) {
-        // if i or j is out or bounds the assume then return 0 a.k.a "water"
-        if (checkBoundaries(grid, i, j) == '0')
+    private void bfsTraverseIsland(char[][] grid, int i, int j) {
+        // boundary checks: // if i or j is out or bounds the assume then return 0 a.k.a "water"
+        if(i < 0 || i >= grid.length)
+            return;
+        if(j < 0 || j >= grid[i].length)
             return;
 
         // recursion base case. First order business to remember
-        if (grid[i][j] == '0')
+        if(grid[i][j] == '0')
             return;
 
         // If we pass beyond base case then mark this coordinates as visited i.e. 0 or 2
-        grid[i][j] = '0';
+        grid[i][j] = '0';       // mark as visited
 
-        traverseIsland(grid, i - 1, j);     // check up
-        traverseIsland(grid, i + 1, j);     // check down
-        traverseIsland(grid, i, j - 1);     // left
-        traverseIsland(grid, i, j + 1);     // right
+        bfsTraverseIsland(grid, i - 1, j);    // up
+        bfsTraverseIsland(grid, i + 1, j);    // down
+        bfsTraverseIsland(grid, i, j -1 );    // left
+        bfsTraverseIsland(grid, i, j + 1);    // right
     }
 
     public static void main(String[] args) {
+        LC0200_NumberOfIslands app = new LC0200_NumberOfIslands();
 
-        System.out.println(numIslands(MAP));
+        System.out.println(app.numIslands(MAP));
     }
-
-
 }
