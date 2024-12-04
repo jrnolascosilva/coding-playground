@@ -2,19 +2,19 @@ package org.example.leetcode;
 
 /**
  * LC0704_BinarySearch
+ * https://leetcode.com/problems/binary-search/
  */
 public class LC0704_BinarySearch {
     public int search(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
 
-        while( left <= right )
-        {
+        while(left <= right) {
             int mid = (left + right) / 2;
-            if( nums[mid] > target )
+            if(target < nums[mid])
                 right = mid - 1;
-            else if( nums[mid] < target )
-                left = mid + 1;
+            else if(target > nums[mid])
+                left = mid +1;
             else
                 return mid;
         }
