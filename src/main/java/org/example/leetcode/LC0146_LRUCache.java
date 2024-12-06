@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class LC0146_LRUCache {
     private int capacity;
-    private Map<Integer, CacheItem> cache;
-    private LinkedList<CacheItem> lruList;
+    private Map<Integer, LinkedListNode> cache;
+    private LinkedList<LinkedListNode> lruList;
 
     public LC0146_LRUCache(int capacity) {
         this.capacity = capacity;
@@ -20,52 +20,57 @@ public class LC0146_LRUCache {
         this.lruList = new LinkedList<>();
     }
 
-    private class CacheItem {
+    private class LinkedListNode {
         private int key;
         private int value;
 
-        public CacheItem(int key, int value) {
+        public LinkedListNode(int key, int value) {
             this.key = key;
             this.value = value;
         }
     }
 
     public int get(int key) {
-        CacheItem found = cache.get(key);
-        if( found != null)
-        {
-            lruList.removeLast();
-            lruList.addFirst(new CacheItem(key, found.value));
-            return found.value;
+        if(cache.containsKey(key)) {
+            LinkedListNode node = cache.get(key);
+            lruList.remove(node);
+            lruList.addFirst(node);
+
+            return node.value;  // make sure to return value
         }
+
         return -1;
     }
 
     public void put(int key, int value) {
-        CacheItem newItem = new CacheItem(key, value);
-        if(cache.get(key) != null)
+        // if key is already in cache might update value
+        if(cache.containsKey(key))
         {
-            lruList.removeLast();
-            lruList.addFirst(newItem);
-            cache.put(key, newItem);
-        }
-        else {
-            if(cache.size() < capacity)
-            {
-                cache.put(key, newItem);
-                lruList.addFirst(newItem);
-            }
-            else {
-                CacheItem removed = lruList.removeLast();
-                cache.remove(removed.key);
-                cache.put(key, newItem);
-                lruList.addFirst(newItem);
+            LinkedListNode node = cache.get(key);
+            // remove from LRU list
+            lruList.remove(node);
+            // update value and add to front
+            node.value = value;
+            // add to LRU list at front
+            lruList.addFirst(node);
+        } else {
 
+            // check if cache is full and remove last element (meaning last used)
+            if(cache.size() == capacity) {
+                LinkedListNode node = lruList.removeLast();
+                cache.remove(node.key);
             }
+
+            // add new element
+            LinkedListNode node = new LinkedListNode(key, value);
+            lruList.addFirst(node);
+            cache.put(key, node);
+
         }
     }
 
     public static void main(String[] args) {
+        /*
         LC0146_LRUCache lruCache = new LC0146_LRUCache(2);
         lruCache.put(1, 1); // cache is {1=1}
         lruCache.put(2, 2); // cache is {1=1, 2=2}
@@ -76,5 +81,11 @@ public class LC0146_LRUCache {
         System.out.println(lruCache.get(1));    // return -1 (not found)
         System.out.println(lruCache.get(3));    // return 3
         System.out.println(lruCache.get(4));    // return 4
+        */
+
+        LC0146_LRUCache lruCache = new LC0146_LRUCache(1);
+        lruCache.put(2, 1); // cache is {1=1}
+        System.out.println(lruCache.get(2));    // return 1
+
     }
 }

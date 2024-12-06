@@ -10,75 +10,71 @@ import java.util.List;
 public class LC0273_IntegerToEnglishWords {
 
     // Array to store numbers till 20 ordinal numbers
-    static final String[] FIRST_TWENTY = {
-            "", "One ", "Two ", "Three ",
-            "Four ", "Five ", "Six ", "Seven ",
-            "Eight ", "Nine ", "Ten ", "Eleven ",
-            "Twelve ", "Thirteen ", "Fourteen ", "Fifteen ",
-            "Sixteen ", "Seventeen ", "Eighteen ", "Nineteen "
-    };
-
+    String[] FIRST_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+            "Eleven", "Twelve", "Thirteen", "Fourteen",  "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
     // Array to store multiples of ten
-    static final String[] TENS = {"", "", "Twenty", "Thirty",
-            "Forty", "Fifty", "Sixty",
-            "Seventy", "Eighty", "Ninety"};
+    String[] TENS ={"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
     // Array to store the powers of 10
-    static final String[] MULTIPLIER = {"", "Thousand ", "Million ", "Billion ", "Trillion "};
+    final String[] POSTFIX = {"", " Thousand ", " Million ", " Billion "};
 
-    public static String numberToWords(long num) {
+    public String numberToWords(int num) {
         if (num == 0)
             return "Zero";
 
-        if (num < 20)
-            return FIRST_TWENTY[(int) num];
+        if(num < 20)
+            return FIRST_20[num];
 
         List<String> answer = new ArrayList<>();
 
-        int iteration = 0;
-        while (num > 0) {
-            int digitGroup = (int) num % 1000;
+        int i = 0;
+        while ( num > 0 ) {
+            int threeDigits = num % 1000;
+            answer.add(toWords(threeDigits) + POSTFIX[i]);
             num /= 1000;
-            answer.add(convertGroup(digitGroup) + MULTIPLIER[iteration]);
-            iteration++;
+            i++;
         }
+
         return String.join("", answer.reversed());
     }
 
-    public static String convertGroup(int number) {
+    private String toWords(int num) {
+        int _3rdDigit = (num / 100) % 10;   // i.e. (519 / 100) % 10 = 5 <-- 3rd digit
+
         StringBuilder sb = new StringBuilder();
 
-        // find the hundred digit, the 3rd one
-        int _3rdDigit = (number / 100) % 10;
-        if (_3rdDigit > 0) {// i.e. (519 / 100) % 10 = 5 <-- 3rd digit
-            sb.append(FIRST_TWENTY[_3rdDigit]).append("Hundred ");
-            number -= _3rdDigit * 100;
+        // find the hundred digit, the 3rd digit
+        if(_3rdDigit > 0) {
+            sb.append(FIRST_20[_3rdDigit] + " Hundred ");
+            num = num - (_3rdDigit * 100);  // Example: 519 - 500 = 19
         }
 
-        // tens
-        if (number < 20) {
-            // if remaining 2 digits less than 20 return from firstTwenty
-            sb.append(FIRST_TWENTY[number]);
-        } else {
+        if(num < 20)
+        {
+            // if remaining 2 digits less than 20 return from FIRST_20
+            sb.append(FIRST_20[num]);
+        }
+        else {
             // map 2nd digit to ten name i.e. Twenty
-            int _2ndDigit = (number / 10);
-            sb.append(TENS[_2ndDigit]);
+            int _2ndDigit = (num / 10);
+            sb.append( TENS[_2ndDigit]);
 
             // map 1st digit to the <20 ordinal numbers
-            int _1thDigit = number % 10;
+            int _1thDigit = num % 10;
             if (_1thDigit != 0)
-                sb.append("-");  // i.e. Sixty-Seven
-            sb.append(FIRST_TWENTY[_1thDigit]);
-        }
+                sb.append(" ");  // i.e. Sixty-Seven
 
+            sb.append(FIRST_20[_1thDigit]);
+        }
         return sb.toString();
     }
 
     public static void main(String[] args) {
-        System.out.println(numberToWords(9));
-        System.out.println(numberToWords(99));
-        System.out.println(numberToWords(520));
-        System.out.println(numberToWords(999));
-        System.out.println(numberToWords(1999));
+        LC0273_IntegerToEnglishWords app = new LC0273_IntegerToEnglishWords();
+        System.out.println(app.numberToWords(9));
+        System.out.println(app.numberToWords(99));
+        System.out.println(app.numberToWords(520));
+        System.out.println(app.numberToWords(999));
+        System.out.println(app.numberToWords(1999));
     }
 }

@@ -31,13 +31,13 @@ public class LC0206_ReverseLinkedList {
        while(curr != null)
         {
             // Trick: Save next node before update curr -> prev
-            ListNode savedNext = curr.next;
+            ListNode next = curr.next;
             // 1) curr.next -> prev  (*link broken temporally*)
             // 2) prev = curr
             // 3) curr -> nxt
             curr.next = prev;
             prev = curr;
-            curr = savedNext;
+            curr = next;
         }
 
         return prev;
@@ -46,15 +46,10 @@ public class LC0206_ReverseLinkedList {
     public static void main(String[] args) {
 
         ListNode one = new ListNode(1);
-        ListNode two = new ListNode(2);
-        ListNode three = new ListNode(3);
-        ListNode four = new ListNode(4);
-        ListNode five = new ListNode(5);
-
-        one.next = two;
-        two.next = three;
-        three.next = four;
-        four.next = five;
+        one.next = new ListNode(2);
+        one.next.next = new ListNode(3);
+        one.next.next.next = new ListNode(4);
+        one.next.next.next.next = new ListNode(5);
 
         LC0206_ReverseLinkedList solution = new LC0206_ReverseLinkedList();
         ListNode result = solution.reverseList(one);
