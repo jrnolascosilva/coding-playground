@@ -1,7 +1,21 @@
 package org.example.ds.trees;
 
+import org.example.commons.TreeNode;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
 
+    /*
+                 2
+               /   \
+              8     4
+             / \     \
+            3   7     1
+                     /
+                    6
+     */
     public TreeNode buildTree() {
         TreeNode root = new TreeNode(2);
 
@@ -20,7 +34,7 @@ public class BinaryTree {
             return;
 
         inOrderTraversal(root.left);
-        System.out.print(root.value + " --> ");
+        System.out.print(root.val + " --> ");
         inOrderTraversal(root.right);
     }
 
@@ -28,7 +42,7 @@ public class BinaryTree {
         if(root == null)
             return;
 
-        System.out.print(root.value + " --> ");
+        System.out.print(root.val + " --> ");
         preOrderTraversal(root.left);
         preOrderTraversal((root.right));
     }
@@ -39,17 +53,38 @@ public class BinaryTree {
 
         posOrderTraversal(root.left);
         posOrderTraversal((root.right));
-        System.out.print(root.value + " --> ");
+        System.out.print(root.val + " --> ");
+    }
+
+    public void breathFirstSearch(TreeNode root) {
+
+        if(root == null)
+            return;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while(!queue.isEmpty()) {
+            TreeNode curr = queue.poll();
+            System.out.print("-->" + curr.val);
+
+            if(curr.left != null)
+                queue.offer(curr.left);
+            if(curr.right != null)
+                queue.offer(curr.right);
+        }
     }
 
     public static void main(String[] args) {
         BinaryTree app = new BinaryTree();
         TreeNode root = app.buildTree();
-        System.out.print("inOrder -> ");
+        System.out.print("inOrder: ");
         app.inOrderTraversal(root);
-        System.out.print("\npreOrder -> ");
+        System.out.print("\npreOrder: ");
         app.preOrderTraversal(root);
-        System.out.print("\nposOrder -> ");
+        System.out.print("\nposOrder: ");
         app.posOrderTraversal(root);
+        System.out.print("\nBread First Search: ");
+        app.breathFirstSearch(root);
     }
 }

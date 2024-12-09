@@ -1,6 +1,4 @@
-package org.example.leetcode.commons;
-
-import org.example.leetcode.LC0021_MergeTwoSortedLists;
+package org.example.commons;
 
 public class ListNode {
     int val;
