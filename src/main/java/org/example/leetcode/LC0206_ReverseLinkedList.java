@@ -5,26 +5,10 @@ package org.example.leetcode;
 // Space complexity = O(1)
 
 
+import org.example.commons.ListNode;
+
 public class LC0206_ReverseLinkedList {
-    // Definition for singly-linked list.
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-    public ListNode reverseList(ListNode head) {
+     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
 

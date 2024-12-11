@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class LC0146_LRUCache {
     private int capacity;
-    private Map<Integer, LinkedListNode> cache;
-    private LinkedList<LinkedListNode> lruList;
+    private Map<Integer, CacheNode> cache;
+    private LinkedList<CacheNode> lruList;
 
     public LC0146_LRUCache(int capacity) {
         this.capacity = capacity;
@@ -20,11 +20,11 @@ public class LC0146_LRUCache {
         this.lruList = new LinkedList<>();
     }
 
-    private class LinkedListNode {
+    private class CacheNode {
         private int key;
         private int value;
 
-        public LinkedListNode(int key, int value) {
+        public CacheNode(int key, int value) {
             this.key = key;
             this.value = value;
         }
@@ -32,7 +32,7 @@ public class LC0146_LRUCache {
 
     public int get(int key) {
         if(cache.containsKey(key)) {
-            LinkedListNode node = cache.get(key);
+            CacheNode node = cache.get(key);
             lruList.remove(node);
             lruList.addFirst(node);
 
@@ -46,7 +46,7 @@ public class LC0146_LRUCache {
         // if key is already in cache might update value
         if(cache.containsKey(key))
         {
-            LinkedListNode node = cache.get(key);
+            CacheNode node = cache.get(key);
             // remove from LRU list
             lruList.remove(node);
             // update value and add to front
@@ -57,12 +57,12 @@ public class LC0146_LRUCache {
 
             // check if cache is full and remove last element (meaning last used)
             if(cache.size() == capacity) {
-                LinkedListNode node = lruList.removeLast();
+                CacheNode node = lruList.removeLast();
                 cache.remove(node.key);
             }
 
             // add new element
-            LinkedListNode node = new LinkedListNode(key, value);
+            CacheNode node = new CacheNode(key, value);
             lruList.addFirst(node);
             cache.put(key, node);
 

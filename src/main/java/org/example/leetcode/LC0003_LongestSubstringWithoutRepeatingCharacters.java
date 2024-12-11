@@ -9,6 +9,23 @@ import java.util.Set;
 
 public class LC0003_LongestSubstringWithoutRepeatingCharacters {
 
+    /*
+        Here is the algorithm
+
+        1. Initialize `maxLength` to 0.
+        2. Create a `HashSet` named `memory` to store characters.
+        3. Initialize two pointers, `left` and `right`, both set to 0.
+        4. Use a `while` loop to iterate through the string `s` until `right` is less than the length of `s`:
+            - If the character at the `right` pointer is not in `memory`:
+                - Add the character to `memory`.
+                - Increment the `right` pointer.
+                - Update `maxLength` to be the maximum of `maxLength` and the difference between `right` and `left`.
+            - Else:
+                - Remove the character at the `left` pointer from `memory`.
+                - Increment the `left` pointer.
+        5. Return `maxLength`.
+
+     */
     public int lengthOfLongestSubstring(String s) {
         int maxLength = 0;
 
@@ -17,11 +34,11 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
         int right = 0;
 
         // left and right are two pointers which are used to traverse the string
-        // when the character at the right pointer is not in the set increment the right pointer
-        // when the character at the right pointer is in the set then increment the left pointer
+        // when the character at the right pointer is not in the memory increment the right pointer
+        // when the character at the right pointer is in the memory then increment the left pointer
         while (right < s.length()) {
 
-            // if the character at the right pointer is not in the set, add it to the set
+            // if the character at the right pointer is not in the memory, add it to the memory
             // and move the right pointer to the right and increment the max length
             if (!memory.contains(s.charAt(right))) {
                 memory.add(s.charAt(right));
@@ -30,8 +47,8 @@ public class LC0003_LongestSubstringWithoutRepeatingCharacters {
             }
             else
             {
-                // if the character at the right pointer is in the set, then the current windows is not valid
-                // so remove from "set" the character at the LEFT pointer and move the left pointer to the right
+                // if the character at the right pointer is in the memory, then the current windows is not valid
+                // so remove from memory the character at the LEFT pointer and move the left pointer to the right
                 // in order to find a new valid window
                 memory.remove(s.charAt(left)); // remove the character at the left pointer
                 left++;
