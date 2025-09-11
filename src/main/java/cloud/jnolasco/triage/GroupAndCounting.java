@@ -1,6 +1,7 @@
 package cloud.jnolasco.triage;
 
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
@@ -15,14 +16,12 @@ public class GroupAndCounting {
 
         var map = new HashMap<Character, Integer>();
 
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            map.merge(c, 1, Integer::sum);   //Cleaner than map.put(c, map.getOrDefault(c, 0) + 1);
-        }
+        Stream<Character> charStream = text.chars().mapToObj(c -> (char) c);
+
+        charStream.forEach( c -> map.merge(c, 1, Integer::sum));
 
         return map;
     }
-
 
     private record Contact(String name, String city) {
     }
