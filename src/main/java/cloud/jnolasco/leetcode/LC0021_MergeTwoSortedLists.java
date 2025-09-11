@@ -6,7 +6,7 @@ package cloud.jnolasco.leetcode;
 // Time complexity: O(m + n) = O(n)
 // Space complexity: O(1)
 
-import org.example.commons.ListNode;
+import cloud.jnolasco.commons.ListNode;
 
 public class LC0021_MergeTwoSortedLists {
 

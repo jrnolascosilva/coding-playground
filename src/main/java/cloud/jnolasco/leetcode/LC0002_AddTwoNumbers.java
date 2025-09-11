@@ -5,7 +5,7 @@ package cloud.jnolasco.leetcode;
 // Time complexity: O(n)
 // Space complexity: O(n)
 
-import org.example.commons.ListNode;
+import cloud.jnolasco.commons.ListNode;
 
 public class LC0002_AddTwoNumbers {
 

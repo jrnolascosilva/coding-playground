@@ -1,7 +1,6 @@
 package cloud.jnolasco.triage;
 
 import java.util.*;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
@@ -18,7 +17,7 @@ public class GroupAndCounting {
 
         Stream<Character> charStream = text.chars().mapToObj(c -> (char) c);
 
-        charStream.forEach( c -> map.merge(c, 1, Integer::sum));
+        charStream.forEach(c -> map.merge(c, 1, Integer::sum));
 
         return map;
     }

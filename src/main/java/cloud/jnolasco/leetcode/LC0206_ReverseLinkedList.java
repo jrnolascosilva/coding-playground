@@ -5,7 +5,7 @@ package cloud.jnolasco.leetcode;
 // Space complexity = O(1)
 
 
-import org.example.commons.ListNode;
+import cloud.jnolasco.commons.ListNode;
 
 public class LC0206_ReverseLinkedList {
      public ListNode reverseList(ListNode head) {
