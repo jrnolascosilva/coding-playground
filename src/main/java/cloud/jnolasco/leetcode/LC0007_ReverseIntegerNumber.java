@@ -15,7 +15,7 @@ public class LC0007_ReverseIntegerNumber {
             x /= 10;                 // remove last digit 34 / 10 = 3 (integer division)
             reversed = (reversed * 10) + lastDigit;
 
-            //
+            // Check overflow
             if((reversed - lastDigit ) / 10 != prev)
                 return 0;
 

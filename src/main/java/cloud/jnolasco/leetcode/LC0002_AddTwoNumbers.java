@@ -5,25 +5,13 @@ package cloud.jnolasco.leetcode;
 // Time complexity: O(n)
 // Space complexity: O(n)
 
+import org.example.commons.ListNode;
+
 public class LC0002_AddTwoNumbers {
 
-    static class ListNode {
-        int val;
-        LC0002_AddTwoNumbers.ListNode next;
+    /*
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, LC0002_AddTwoNumbers.ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode result = new ListNode(0);
         ListNode resultTail = result;
