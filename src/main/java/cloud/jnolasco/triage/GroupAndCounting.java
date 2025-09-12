@@ -79,7 +79,7 @@ public class GroupAndCounting {
                 .forEach(System.out::println);
 
         System.out.println("-> Counting characters with Collectors.groupingBy");
-        var map3 = groupAndCountCharactersWithStreamAPI("aaaabbbcdeff");
+        var map3 = groupAndCountCharactersWithStreamAPI(input);
         map3.entrySet().stream()
                 .forEach(System.out::println);
 
