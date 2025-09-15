@@ -39,6 +39,7 @@ public class GroupAndCounting {
 
     private record Contact(String name, String city) {
     }
+
     /**
      * It counts how many contacts belong to each city and returns a Map where the keys are city names and the values are their respective counts
      */
@@ -56,6 +57,44 @@ public class GroupAndCounting {
     public static Map<String, Long> groupAndCountPojosWithStreamAPI(Collection<Contact> contacts) {
         return contacts.stream()
                 .collect(Collectors.groupingBy(c -> c.city, Collectors.counting()));
+    }
+
+    /**
+     * iterates through a given string to classify each character as either a vowel or a consonant.
+     */
+    public static Map<String, Long> countConsonantAndVowels(String input) {
+        if (input == null || input.isEmpty()) {
+            return Collections.emptyMap();
+        }
+
+        var map = new HashMap<String, Long>();
+
+        for (Character c : input.toCharArray()) {
+            boolean isVowel = "aeiou".contains(c.toString());
+            if (isVowel)
+                map.merge("Vowel", 1L, Long::sum);
+            else
+                map.merge("Consonant", 1L, Long::sum);
+        }
+
+        return map;
+    }
+
+    /**
+     * iterates through a given string to classify each character as either a vowel or a consonant with Streams
+     */
+    public static Map<String, Long> countConsonantAndVowelsWithStreams(String input) {
+        if (input == null || input.isEmpty()) {
+            return Collections.emptyMap();
+        }
+
+        Map<String, Long> collected = input.chars().mapToObj(c -> (char) c)
+                .filter(Character::isLetter)
+                .collect(Collectors.groupingBy(
+                        c -> "aeiou".contains(c.toString()) ? "Vowel" : "Consonant",
+                        Collectors.counting()
+                ));
+        return collected;
     }
 
     public static void main(String[] args) {
@@ -87,6 +126,16 @@ public class GroupAndCounting {
         var map4 = groupAndCountPojosWithStreamAPI(contacts);
         map4.entrySet().stream()
                 .forEach(System.out::println);
-    }
 
+        String input2 = "abcde";
+        System.out.println("-> Counting %s with countConsonantAndVowels".formatted(input2));
+        var map5 = countConsonantAndVowels(input2);
+        map5.entrySet().stream()
+                .forEach(System.out::println);
+
+        System.out.println("-> Counting %s with countConsonantAndVowels with Stream".formatted(input2));
+        var map6 = countConsonantAndVowelsWithStreams(input2);
+        map6.entrySet().stream()
+                .forEach(System.out::println);
+    }
 }
